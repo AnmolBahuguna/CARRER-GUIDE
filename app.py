@@ -3,19 +3,17 @@ from flask_cors import CORS
 import os
 
 
-@app.route('/', methods=['GET', 'HEAD'])
-def index():
-    if request.method == 'HEAD':
-        return '', 200
-    return render_template('index.html')  # Ya jo bhi aapka response hai
 
 # Initialize Flask app
 app = Flask(__name__, template_folder='FRONTEND')
 CORS(app, resources={r"/*": {"origins": "*"}})
 
+
 # ============= ROUTES FOR HTML PAGES =============
-@app.route('/')
+@app.route('/', methods=['GET', 'HEAD'])
 def index():
+    if request.method == 'HEAD':
+        return '', 200
     return render_template('index.html')
 
 @app.route('/animation')
